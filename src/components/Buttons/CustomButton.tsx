@@ -16,7 +16,7 @@ import {
 type Props = {
     onPress: ()=> void,
     disabled?: boolean,
-    label: string;
+    label?: string;
     type?: string;
     width?: any;
     labelColor?: string;
@@ -62,7 +62,7 @@ export default function CustomButton(props: Props)  {
         onPressOut={onPressOut}
         onPress={props.onPress}
         disabled={props.disabled}
-        style={[props.style]}>
+        style={[ {marginBottom: 20}, props.style]}>
             <Animated.View 
             style={[styles.button, {
                 transform: [{ scaleX: animatedScale }, { scaleY: animatedScale }],
@@ -75,9 +75,9 @@ export default function CustomButton(props: Props)  {
                         height: props.imageHeight,
                     }} />
                 )}
-                <Text style={[styles.text, props.textStyle, props.disabled && {color: Colors.textSecondary}]}>
+                {props.label && <Text style={[styles.text, props.textStyle, props.disabled && {color: Colors.textSecondary}, {color: props.labelColor}]}>
                     {props.label}
-                </Text>
+                </Text>}
                 {props.children}
             </Animated.View>
         </Pressable>
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "auto",
         borderRadius: 30,
-        marginBottom: 20,
         padding: 20,
     },
     disabled: {

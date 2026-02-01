@@ -14,7 +14,7 @@ export default function StackNavigator() {
     initialRouteName="GetStarted"
     screenOptions={{
         headerShown: false,
-        animation: 'slide_from_right',
+        animation: 'fade',
     }}
     >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Home"}} />

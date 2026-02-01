@@ -7,7 +7,8 @@ import { useFonts } from "expo-font";
 export default function App() {
     const [fontLoaded, fontError] = useFonts({
         'notosansjp-regular': require('./assets/fonts/NotoSansJP-Regular.ttf'),
-        'notosansjp-bold': require('./assets/fonts/NotoSansJP-Bold.ttf')
+        'notosansjp-bold': require('./assets/fonts/NotoSansJP-Bold.ttf'),
+        'styled-font': require('./assets/fonts/Archivo_Condensed-Regular.ttf'),
     });
 
     if (!fontLoaded && !fontError) return null

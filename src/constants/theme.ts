@@ -8,9 +8,11 @@ export const Colors = {
     textPrimary: '#0E0E1A',
     textSecondary: '#6B7280',
     textMuted: '#afafaf4e',
+    dark: "#343434fe"
 }
 
 export const Fonts = {
     regular: "notosansjp-regular",
     bold: "notosansjp-bold",
+    styled: "styled-font",
 }
