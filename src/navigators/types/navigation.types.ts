@@ -4,4 +4,5 @@ export type AppStackParamList = {
     Home: undefined;
     Profile: { userId: String };
     Settings: undefined;
+    TextTranslate: undefined;
 }

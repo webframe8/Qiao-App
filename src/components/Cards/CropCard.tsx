@@ -21,7 +21,7 @@ type Props = {
 export default function TransalationCropCard(props: Props) {
   return (
     <>
-      <Pressable onPress={props.onpress} style={[{}, props.style]}>
+      <Pressable onPress={props.onpress} style={[{alignItems: "center"}, props.style]}>
         <View style={styles.iconHolder}>
           <Icon
             name={props.IconName}

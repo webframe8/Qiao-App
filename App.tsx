@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import MainApp from "./MainApp"
 import { useFonts } from "expo-font";
+import { AppProvider } from "./src/context/AppContext";
 
 
 export default function App() {
@@ -16,7 +17,9 @@ export default function App() {
     return (
         <>
         <NavigationContainer>
-            <MainApp />
+            <AppProvider>
+                <MainApp />
+            </AppProvider>
         </NavigationContainer>
         </>
     )

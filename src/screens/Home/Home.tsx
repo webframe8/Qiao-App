@@ -5,29 +5,36 @@ import HomeNavBar from "@/src/components/NavBars/HomeNav";
 import TranslateFeaturesCard from "@/src/components/Cards/FeaturesCard";
 import TransalationCropCard from "@/src/components/Cards/CropCard";
 import CustomButton from "@/src/components/Buttons/CustomButton";
-export default function HomeScreen() {
+import { SafeAreaView } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "@/src/navigators/types/navigation.types";
+
+type Props = NativeStackScreenProps<AppStackParamList, "Home">;
+
+
+export default function HomeScreen({ navigation }: Props) {
   const cropdata = [
-    { id: 1, title: "Hotel", Icon: "house", onpress: () => {} },
+    { id: 1, title: "Nerby", Icon: "restaurant", onpress: () => {} },
     { id: 2, title: "Camera", Icon: "camera", onpress: () => {} },
     { id: 3, title: "Job", Icon: "work", onpress: () => {} },
-    { id: 4, title: "Study", Icon: "study", onpress: () => {} },
+    { id: 4, title: "Study", Icon: "school", onpress: () => {} },
     { id: 5, title: "Support", Icon: "message", onpress: () => {} },
-    { id: 6, title: "Blog", Icon: "file", onpress: () => {} },
+    { id: 6, title: "Blog", Icon: "insights", onpress: () => {} },
   ];
   return (
     <>
-      <View style={styles.conatneir}>
-        <HomeNavBar title="Home" />
-        <ScrollView>
+      <SafeAreaView style={styles.conatneir}>
+        <HomeNavBar title="Home" nonav />
+        <ScrollView style={styles.scrollcontainer}>
           <View style={styles.featureHolder}>
             <TranslateFeaturesCard
               IconName="translation"
               title="Text Translation"
-              onPress={() => {}}
+              onPress={() => {navigation.navigate("TextTranslate")}}
               colors={["#daf2fb", "#6c24b4"]}
             />
             <TranslateFeaturesCard
-              IconName=""
+              IconName="mic"
               title="Voice Transalation"
               onPress={() => {}}
               colors={["#5ef899", "#0d7a21"]}
@@ -53,30 +60,37 @@ export default function HomeScreen() {
                 onpress={item.onpress}
                 key={item.id}
                 IconSize={27}
-                style={{ width: "19.95%", alignSelf: "center" }}
+                style={{
+                  width: "19.95%",
+                  alignSelf: "center",
+                  justifyContent: "center",
+                }}
               />
             ))}
           </View>
           <View style={styles.buttonHolder}>
             <CustomButton
-            label="Purchase This App"
-            onPress={() => {}}
-            backgroundColor={Colors.accentBlue}
-            labelColor={Colors.background}
-          />
+              label="Purchase This App"
+              onPress={() => {}}
+              backgroundColor={Colors.accentBlue}
+              labelColor={Colors.background}
+            />
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   conatneir: {
-    paddingTop: 25,
     flex: 1,
     backgroundColor: Colors.textPrimary,
-    padding: 10,
+    paddingHorizontal: 10,
+  },
+  scrollcontainer: {
+    flex: 1,
+
   },
   featureHolder: {
     flexDirection: "row",
@@ -97,6 +111,8 @@ const styles = StyleSheet.create({
   },
   buttonHolder: {
     flex: 1,
+    width: "100%",
     justifyContent: "flex-end",
+    marginTop: 30,
   },
 });

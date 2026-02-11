@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import HeaderText from "@/src/components/Texts/HeaderText";
 import MediumText from "@/src/components/Texts/MediumText";
@@ -10,11 +10,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppStackParamList } from "@/src/navigators/types/navigation.types";
 import { Animated } from "react-native";
+import { AppContext } from "@/src/context/AppContext";
 
 type Props = NativeStackScreenProps<AppStackParamList, "GetStarted">;
 
 export default function GetStartedScreen({ navigation }: Props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { CompleteOnboarding } = useContext(AppContext)!;
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -48,7 +50,7 @@ export default function GetStartedScreen({ navigation }: Props) {
                   marginTop: 30,
                   fontWeight: 700,
                   letterSpacing: 2,
-                  color: Colors.accentBlue
+                  color: Colors.accentBlue,
                 },
               ]}
             />
@@ -75,7 +77,7 @@ export default function GetStartedScreen({ navigation }: Props) {
             <View style={styles.ButtonContaneir}>
               <View style={styles.ButtonHolder}>
                 <CustomButton
-                  onPress={() => navigation.navigate("Home")}
+                  onPress={CompleteOnboarding}
                   style={{
                     width: 70,
                     height: 70,
@@ -87,11 +89,34 @@ export default function GetStartedScreen({ navigation }: Props) {
                 >
                   <Icon name="play" size={22} />
                 </CustomButton>
-                <SmallText text="Get Started" style={{color: Colors.background, fontSize: 18, fontWeight: 500, flex: 1, textAlign: "center" }} />
+                <SmallText
+                  text="Get Started"
+                  style={{
+                    color: Colors.background,
+                    fontSize: 18,
+                    fontWeight: 500,
+                    flex: 1,
+                    textAlign: "center",
+                  }}
+                />
                 <View style={styles.IconVit}>
-                  <Icon name="chevron-right" size={24} color="#ffffff86" style={{marginRight: -10,}} />
-                  <Icon name="chevron-right" size={24} color="#ffffffe4" style={{marginRight: -10,}} />
-                  <Icon name="chevron-right" size={24} color={Colors.background} />
+                  <Icon
+                    name="chevron-right"
+                    size={24}
+                    color="#ffffff86"
+                    style={{ marginRight: -10 }}
+                  />
+                  <Icon
+                    name="chevron-right"
+                    size={24}
+                    color="#ffffffe4"
+                    style={{ marginRight: -10 }}
+                  />
+                  <Icon
+                    name="chevron-right"
+                    size={24}
+                    color={Colors.background}
+                  />
                 </View>
               </View>
             </View>
@@ -146,5 +171,5 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     paddingRight: 10,
-  }
+  },
 });

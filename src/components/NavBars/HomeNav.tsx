@@ -4,9 +4,13 @@ import { View, StyleSheet, Pressable } from "react-native";
 import SmallText from "../Texts/SmallText";
 import MediumText from "../Texts/MediumText";
 import Icon from "../Icons/Icon";
+import React from "react";
 
 type Props = {
   title?: string;
+  children?: React.ReactNode;
+  nonav?: boolean;
+  navigation?: () => void;
 };
 
 export default function HomeNavBar(props: Props) {
@@ -21,6 +25,9 @@ export default function HomeNavBar(props: Props) {
             gap: 10,
           }}
         >
+            { !props.nonav && <Pressable style={styles.menu} onPress={props.navigation} >
+                <Icon name="arrow-left" color={Colors.background} size={20} />
+            </Pressable>}
             <SmallText
               text={props.title ?? "Home"}
               style={{
